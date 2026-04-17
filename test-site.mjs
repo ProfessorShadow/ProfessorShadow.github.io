@@ -49,7 +49,8 @@ const requiredText = [
   "Reporting foundation",
   "https://formsubmit.co/ghaziabbas832@gmail.com",
   "Thanks - your message is ready to send.",
-  "ghaziabbas832@gmail.com",
+  "Contact form",
+  "Use the secure form on this page",
 ];
 
 for (const text of requiredText) {
@@ -96,7 +97,6 @@ const requiredSelectors = [
   'name="_subject"',
   'name="_captcha"',
   'name="_template"',
-  "mailto:ghaziabbas832@gmail.com",
 ];
 
 for (const text of requiredSelectors) {
@@ -114,6 +114,17 @@ check(projectLinkCount >= 1, "index.html should retain at least one source portf
 
 const tableauLinkCount = (html.match(/public\.tableau\.com\/app\/profile\/ghazi\.abbas\/viz\//g) || []).length;
 check(tableauLinkCount >= 3, "index.html should link directly to the three Tableau dashboards");
+
+const privateContactPatterns = [
+  'href="mailto:ghaziabbas832@gmail.com"',
+  'href="tel:0469303666"',
+  "<strong>ghaziabbas832@gmail.com</strong>",
+  "<strong>0469303666</strong>",
+];
+
+for (const text of privateContactPatterns) {
+  check(!html.includes(text), `index.html should not expose private contact detail "${text}"`);
+}
 
 const requiredAssetPaths = [
   "assets/projects/superstore-dashboard-tableau.png",
