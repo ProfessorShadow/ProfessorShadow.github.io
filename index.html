@@ -1,0 +1,2403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ghazi Abbas is a Melbourne-based Data Analyst building Tableau dashboards, Power BI reporting automation, SQL reporting datasets, and stakeholder-focused insights.">
+  <title>Ghazi Abbas | Data Analyst Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #702ae1;
+      --primary-strong: #6411d5;
+      --primary-soft: #b28cff;
+      --secondary: #4e44d4;
+      --tertiary: #815100;
+      --surface: #f5f7f9;
+      --surface-low: #eef1f3;
+      --surface-mid: #e5e9eb;
+      --surface-high: #dfe3e6;
+      --surface-white: #ffffff;
+      --ink: #2c2f31;
+      --muted: #595c5e;
+      --ghost: rgba(171, 173, 175, 0.18);
+      --glass: rgba(255, 255, 255, 0.68);
+      --glass-strong: rgba(255, 255, 255, 0.82);
+      --teal: #0d9488;
+      --rose: #c2415c;
+      --green: #11885a;
+      --ease: cubic-bezier(0.34, 1.56, 0.64, 1);
+      color-scheme: light;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background:
+        radial-gradient(circle at 20% 18%, rgba(112, 42, 225, 0.05), transparent 26rem),
+        linear-gradient(135deg, rgba(78, 68, 212, 0.05), transparent 34rem),
+        var(--surface);
+      color: var(--ink);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(rgba(78, 68, 212, 0.18) 1px, transparent 1px);
+      background-size: 38px 38px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 55%);
+      z-index: -2;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    .skip-link {
+      position: fixed;
+      left: 1rem;
+      top: 1rem;
+      transform: translateY(-150%);
+      background: var(--ink);
+      color: #fff;
+      padding: 0.7rem 1rem;
+      border-radius: 8px;
+      z-index: 100;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 10px 30px -10px rgba(67, 56, 202, 0.08);
+    }
+
+    .nav {
+      width: min(100% - 2rem, 1180px);
+      min-height: 72px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-family: "Plus Jakarta Sans", Inter, sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--primary);
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+      font-family: "Plus Jakarta Sans", Inter, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .nav-links a {
+      color: #505357;
+      transition: color 180ms ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border: 0;
+      border-radius: 8px;
+      padding: 0.78rem 1.05rem;
+      font-family: "Plus Jakarta Sans", Inter, sans-serif;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 220ms var(--ease), box-shadow 220ms ease, background 220ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-soft));
+      color: #f8f0ff;
+      box-shadow: 0 16px 34px -18px rgba(112, 42, 225, 0.78);
+    }
+
+    .btn-glass {
+      background: var(--glass-strong);
+      color: var(--primary);
+      box-shadow: 0 10px 30px -22px rgba(67, 56, 202, 0.3);
+    }
+
+    .btn-line {
+      color: var(--primary);
+      position: relative;
+      padding-inline: 0;
+      min-height: 0;
+      background: transparent;
+    }
+
+    .btn-line::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 100%;
+      bottom: -0.22rem;
+      height: 2px;
+      background: currentColor;
+      transition: right 220ms ease;
+    }
+
+    .btn-line:hover::after {
+      right: 0;
+    }
+
+    .section {
+      position: relative;
+      padding: 6.25rem 0;
+    }
+
+    .section-low {
+      background: var(--surface-low);
+    }
+
+    .wrap {
+      width: min(100% - 2rem, 1180px);
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.48rem;
+      margin: 0 0 1.1rem;
+      color: var(--primary);
+      font-family: "Plus Jakarta Sans", Inter, sans-serif;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 0.42rem;
+      height: 0.42rem;
+      border-radius: 999px;
+      background: currentColor;
+      box-shadow: 0 0 0 0.35rem rgba(112, 42, 225, 0.08);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin: 0;
+      font-family: "Plus Jakarta Sans", Inter, sans-serif;
+      letter-spacing: 0;
+      line-height: 1.05;
+    }
+
+    h1 {
+      max-width: 680px;
+      font-size: 4.65rem;
+      font-weight: 800;
+    }
+
+    h2 {
+      font-size: 3rem;
+      font-weight: 800;
+    }
+
+    h3 {
+      font-size: 1.55rem;
+      font-weight: 800;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .hero {
+      min-height: 830px;
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      padding: 5rem 0 6rem;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -8rem -10rem auto;
+      width: 52rem;
+      height: 26rem;
+      background: linear-gradient(135deg, rgba(112, 42, 225, 0.08), rgba(13, 148, 136, 0.07));
+      transform: rotate(-11deg);
+      z-index: -1;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+      align-items: center;
+      gap: 4.5rem;
+    }
+
+    .hero-copy {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem 1.5rem;
+      padding-top: 0.7rem;
+    }
+
+    .hero-proof {
+      display: flex;
+      align-items: stretch;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      padding-top: 0.7rem;
+    }
+
+    .proof-pill {
+      min-width: 148px;
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 16px 40px -28px rgba(44, 47, 49, 0.36);
+    }
+
+    .proof-pill strong {
+      display: block;
+      color: var(--primary);
+      font-family: "Plus Jakarta Sans", Inter, sans-serif;
+      font-size: 1.45rem;
+      line-height: 1;
+    }
+
+    .proof-pill span {
+      display: block;
+      margin-top: 0.25rem;
+      color: var(--muted);
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .hero-stage {
+      position: relative;
+      min-height: 560px;
+      perspective: 1200px;
+    }
+
+    .data-slab {
+      position: absolute;
+      inset: 4.2rem 4.6rem 1rem 4rem;
+      border-radius: 24px;
+      transform: rotate(8deg);
+      transform-style: preserve-3d;
+      box-shadow: 0 32px 75px -40px rgba(44, 47, 49, 0.62);
+      overflow: hidden;
+      background: #13151b;
+      isolation: isolate;
+    }
+
+    .data-slab img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.92;
+      filter: saturate(1.04) contrast(1.04);
+      transform: scale(1.03);
+    }
+
+    .data-slab::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(112, 42, 225, 0.18), transparent 42%),
+        radial-gradient(circle at var(--trace-x, 45%) var(--trace-y, 42%), rgba(178, 140, 255, 0.28), transparent 9rem);
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .floating-metric {
+      position: absolute;
+      right: 1.35rem;
+      top: 4.8rem;
+      width: 132px;
+      padding: 1.05rem;
+      border-radius: 16px;
+      background: var(--glass-strong);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 45px -28px rgba(44, 47, 49, 0.52);
+      transform: translateZ(70px) rotate(6deg);
+      z-index: 3;
+    }
+
+    .floating-metric strong {
+      display: block;
+      color: var(--primary);
+      font-family: "Plus Jakarta Sans", Inter, sans-serif;
+      font-size: 1.6rem;
+    }
+
+    .floating-metric span {
+      color: var(--muted);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .stack-card {
+      position: absolute;
+      left: 0.4rem;
+      bottom: 1.65rem;
+      width: 260px;
+      padding: 1.15rem;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 22px 52px -35px rgba(44, 47, 49, 0.55);
+      z-index: 3;
+    }
+
+    .stack-card p {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-top: 0.4rem;
+    }
+
+    .mini-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.8rem;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      background: rgba(208, 205, 255, 0.55);
+      color: #382bc0;
+      padding: 0.32rem 0.58rem;
+      font-size: 0.66rem;
+      font-family: "Plus Jakarta Sans", Inter, sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(380px, 1.08fr);
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .feature-card,
+    .skill-card,
+    .education-card,
+    .timeline-card,
+    .case-card,
+    .lab-card,
+    .contact-panel {
+      position: relative;
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--ghost);
+      box-shadow: 0 18px 50px -38px rgba(44, 47, 49, 0.55);
+      overflow: hidden;
+    }
+
+    .feature-card,
+    .skill-card,
+    .education-card {
+      border-radius: 16px;
+      padding: 1.35rem;
+    }
+
+    [data-trace]::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--trace-x, 50%) var(--trace-y, 50%), rgba(166, 122, 255, 0.24), transparent 8rem);
+      opacity: 0;
+      transition: opacity 180ms ease;
+      pointer-events: none;
+    }
+
+    [data-trace]:hover::before {
+      opacity: 1;
+    }
+
+    .feature-card > *,
+    .skill-card > *,
+    .education-card > *,
+    .case-card > *,
+    .lab-card > *,
+    .contact-panel > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .icon {
+      width: 2.3rem;
+      height: 2.3rem;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: rgba(112, 42, 225, 0.1);
+      color: var(--primary);
+      font-family: "Plus Jakarta Sans", Inter, sans-serif;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card:nth-child(2) .icon,
+    .skill-card:nth-child(2) .icon,
+    .education-card:nth-child(2) .icon {
+      color: var(--secondary);
+      background: rgba(78, 68, 212, 0.1);
+    }
+
+    .feature-card:nth-child(3) .icon,
+    .skill-card:nth-child(3) .icon,
+    .education-card:nth-child(3) .icon {
+      color: var(--tertiary);
+      background: rgba(248, 160, 16, 0.14);
+    }
+
+    .feature-card:nth-child(4) .icon,
+    .skill-card:nth-child(4) .icon {
+      color: var(--teal);
+      background: rgba(13, 148, 136, 0.11);
+    }
+
+    .feature-card h3,
+    .skill-card h3,
+    .education-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .feature-card p,
+    .skill-card p,
+    .education-card p {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .section-head p {
+      max-width: 390px;
+      color: var(--muted);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .case-list {
+      display: grid;
+      gap: 2.2rem;
+    }
+
+    .case-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+      min-height: 440px;
+      border-radius: 24px;
+      background: var(--surface-white);
+    }
+
+    .case-card:nth-child(even) {
+      grid-template-columns: minmax(360px, 0.95fr) minmax(0, 1.05fr);
+    }
+
+    .case-media {
+      position: relative;
+      min-height: 390px;
+      overflow: hidden;
+      background: #111318;
+    }
+
+    .case-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.86;
+      filter: saturate(1.05) contrast(1.04);
+      transition: transform 900ms ease;
+    }
+
+    .case-card:hover .case-media img {
+      transform: scale(1.055);
+    }
+
+    .case-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 52% 45%, rgba(13, 148, 136, 0.18), transparent 12rem),
+        linear-gradient(to right, rgba(255, 255, 255, 0.88), transparent 38%, transparent 68%, rgba(255, 255, 255, 0.92));
+      pointer-events: none;
+    }
+
+    .case-card:nth-child(even) .case-media::after {
+      background:
+        radial-gradient(circle at 55% 48%, rgba(248, 160, 16, 0.18), transparent 12rem),
+        linear-gradient(to left, rgba(255, 255, 255, 0.88), transparent 38%, transparent 68%, rgba(255, 255, 255, 0.92));
+    }
+
+    .case-content {
+      display: grid;
+      align-content: center;
+      gap: 1.15rem;
+      padding: 3.25rem;
+    }
+
+    .case-content p {
+      color: var(--muted);
+    }
+
+    .outcomes {
+      display: grid;
+      gap: 0.72rem;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .outcomes li {
+      display: flex;
+      gap: 0.65rem;
+      align-items: flex-start;
+      color: var(--ink);
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .outcomes li::before {
+      content: "";
+      width: 0.48rem;
+      height: 0.48rem;
+      border-radius: 999px;
+      margin-top: 0.45rem;
+      background: var(--primary);
+      box-shadow: 0 0 0 0.24rem rgba(112, 42, 225, 0.09);
+      flex: 0 0 auto;
+    }
+
+    .lab-card {
+      border-radius: 24px;
+      padding: 2rem;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(238, 241, 243, 0.8)),
+        var(--surface-white);
+      display: grid;
+      grid-template-columns: minmax(0, 0.86fr) minmax(280px, 1.14fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .lab-visual {
+      min-height: 260px;
+      border-radius: 18px;
+      background:
+        linear-gradient(135deg, rgba(112, 42, 225, 0.12), transparent),
+        linear-gradient(90deg, rgba(13, 148, 136, 0.13), transparent),
+        var(--surface-mid);
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+    }
+
+    .mini-dashboard {
+      width: 82%;
+      border-radius: 16px;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 24px 55px -34px rgba(44, 47, 49, 0.54);
+      display: grid;
+      gap: 0.8rem;
+      transform: rotate(-2deg);
+    }
+
+    .chart-row {
+      height: 0.72rem;
+      border-radius: 99px;
+      background: var(--surface-high);
+      overflow: hidden;
+    }
+
+    .chart-row span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--primary), var(--teal));
+    }
+
+    .work-scroll {
+      display: grid;
+      gap: 5.5rem;
+      counter-reset: project;
+      perspective: 1400px;
+    }
+
+    .project-dive {
+      counter-increment: project;
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(420px, 1.08fr);
+      gap: 3rem;
+      align-items: start;
+      min-height: 760px;
+      padding: 2rem;
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(245, 247, 249, 0.72)),
+        var(--surface-white);
+      box-shadow: 0 34px 80px -58px rgba(44, 47, 49, 0.58);
+      overflow: clip;
+      isolation: isolate;
+      contain: paint;
+      transform-style: preserve-3d;
+      transform: perspective(1400px) rotateX(calc(var(--scroll-rx, 0deg) + var(--depth-rx, 0deg))) rotateY(var(--depth-ry, 0deg));
+      will-change: transform;
+    }
+
+    .project-dive::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at calc(18% + (var(--scene-progress, 0) * 64%)) 18%, rgba(112, 42, 225, 0.12), transparent 20rem),
+        linear-gradient(115deg, transparent, rgba(13, 148, 136, 0.08), transparent);
+      opacity: 0.9;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .project-dive::before {
+      content: "";
+      position: absolute;
+      inset: 1rem;
+      border-radius: 24px;
+      background:
+        linear-gradient(115deg, rgba(255, 255, 255, 0.16), transparent 36%),
+        radial-gradient(circle at var(--trace-x, 50%) var(--trace-y, 50%), rgba(112, 42, 225, 0.16), transparent 14rem);
+      opacity: calc(0.22 + (var(--scene-progress, 0) * 0.28));
+      transform: translateZ(-24px) scale(1.02);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .project-dive:nth-child(even) {
+      grid-template-columns: minmax(420px, 1.08fr) minmax(0, 0.92fr);
+    }
+
+    .project-dive:nth-child(even) .project-visual {
+      order: 1;
+    }
+
+    .project-dive:nth-child(even) .project-copy {
+      order: 2;
+    }
+
+    .project-visual {
+      position: sticky;
+      top: 104px;
+      min-height: 560px;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #111318;
+      box-shadow: 0 30px 74px -48px rgba(44, 47, 49, 0.7);
+      transform: translate3d(0, calc(var(--visual-y, 0px) + var(--parallax-y, 0px)), 0) rotate(calc(var(--scene-progress, 0) * -1.6deg));
+      transition: none;
+      will-change: transform;
+      backface-visibility: hidden;
+      contain: paint;
+    }
+
+    .project-visual img {
+      width: 100%;
+      height: 100%;
+      min-height: 560px;
+      object-fit: cover;
+      filter: saturate(1.05) contrast(1.03);
+      transform: scale(calc(1.04 + (var(--scene-progress, 0) * 0.055)));
+      transition: none;
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+
+    .project-visual.dashboard-visual {
+      background: #f8fafb;
+    }
+
+    .project-visual.dashboard-visual img {
+      object-fit: contain;
+      padding: 0.6rem;
+      transform: scale(calc(1.005 + (var(--scene-progress, 0) * 0.018)));
+    }
+
+    .project-visual.dashboard-visual::before {
+      background:
+        radial-gradient(circle at calc(26% + var(--scene-progress, 0) * 34%) calc(20% + var(--scene-progress, 0) * 26%), rgba(178, 140, 255, 0.12), transparent 12rem);
+    }
+
+    .project-visual.dashboard-visual::after {
+      background:
+        linear-gradient(to top, rgba(255, 255, 255, 0.24), transparent 25%);
+    }
+
+    .pipeline-visual {
+      display: grid;
+      place-items: center;
+      min-height: 560px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(46, 127, 255, 0.22), transparent 12rem),
+        radial-gradient(circle at 78% 70%, rgba(13, 148, 136, 0.18), transparent 13rem),
+        #101620;
+      color: #f8fbff;
+      perspective: 1200px;
+    }
+
+    .azure-orbit {
+      position: relative;
+      width: min(90%, 520px);
+      min-height: 390px;
+      transform-style: preserve-3d;
+      transform: rotateX(58deg) rotateZ(calc(-14deg + (var(--scene-progress, 0) * 18deg))) translateY(var(--parallax-y, 0px));
+      will-change: transform;
+    }
+
+    .orbit-ring {
+      position: absolute;
+      inset: 4%;
+      border: 1px solid rgba(135, 184, 255, 0.34);
+      border-radius: 999px;
+      transform: translateZ(-26px);
+      box-shadow: 0 0 80px rgba(46, 127, 255, 0.18);
+    }
+
+    .orbit-ring:nth-child(2) {
+      inset: 18% 10%;
+      border-color: rgba(34, 211, 238, 0.28);
+      transform: translateZ(32px) rotateZ(36deg);
+    }
+
+    .pipeline-node {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      width: 7.2rem;
+      min-height: 4.7rem;
+      padding: 0.85rem;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--ink);
+      box-shadow: 0 28px 70px -36px rgba(0, 0, 0, 0.65);
+      transform: translate3d(var(--node-x), var(--node-y), var(--node-z));
+      font-family: "Plus Jakarta Sans", Inter, sans-serif;
+      font-weight: 800;
+      text-align: center;
+      line-height: 1.15;
+    }
+
+    .pipeline-node small {
+      display: block;
+      margin-top: 0.35rem;
+      color: var(--muted);
+      font-size: 0.62rem;
+      text-transform: uppercase;
+    }
+
+    .pipeline-node.is-source {
+      --node-x: 2rem;
+      --node-y: 9rem;
+      --node-z: 74px;
+    }
+
+    .pipeline-node.is-factory {
+      --node-x: 12rem;
+      --node-y: 1rem;
+      --node-z: 116px;
+      color: #1454d8;
+    }
+
+    .pipeline-node.is-postgres {
+      --node-x: 22rem;
+      --node-y: 10rem;
+      --node-z: 88px;
+      color: #0f766e;
+    }
+
+    .pipeline-node.is-bi {
+      --node-x: 13rem;
+      --node-y: 18rem;
+      --node-z: 140px;
+      color: var(--primary);
+    }
+
+    .pipeline-beam {
+      position: absolute;
+      left: 13%;
+      right: 10%;
+      top: 48%;
+      height: 0.34rem;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(96, 165, 250, 0), rgba(96, 165, 250, 0.9), rgba(13, 148, 136, 0.9), rgba(96, 165, 250, 0));
+      box-shadow: 0 0 30px rgba(96, 165, 250, 0.54);
+      transform: translateZ(70px) rotateZ(calc(-8deg + var(--scene-progress, 0) * 12deg));
+    }
+
+    .pipeline-pulse {
+      position: absolute;
+      top: calc(48% - 0.5rem);
+      left: calc(10% + var(--scene-progress, 0) * 66%);
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      background: #8bd3ff;
+      box-shadow: 0 0 24px #8bd3ff;
+      transform: translateZ(120px);
+    }
+
+    .project-visual::before,
+    .project-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .project-visual::before {
+      background:
+        radial-gradient(circle at calc(30% + var(--scene-progress, 0) * 48%) calc(24% + var(--scene-progress, 0) * 46%), rgba(178, 140, 255, 0.34), transparent 12rem),
+        linear-gradient(to bottom, transparent 42%, rgba(17, 19, 24, 0.22));
+      mix-blend-mode: screen;
+    }
+
+    .project-visual::after {
+      background:
+        linear-gradient(to right, rgba(245, 247, 249, 0.82), transparent 22%, transparent 76%, rgba(245, 247, 249, 0.76)),
+        linear-gradient(to top, rgba(255, 255, 255, 0.38), transparent 30%);
+    }
+
+    .project-index {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.56rem 0.72rem;
+      border-radius: 999px;
+      color: var(--primary);
+      background: rgba(255, 255, 255, 0.74);
+      backdrop-filter: blur(16px);
+      font-family: "Plus Jakarta Sans", Inter, sans-serif;
+      font-weight: 800;
+      font-size: 0.78rem;
+    }
+
+    .project-index::before {
+      content: "0" counter(project);
+    }
+
+    .floating-stat {
+      position: absolute;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 2;
+      width: min(78%, 260px);
+      padding: 1rem;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(18px);
+      color: var(--ink);
+      box-shadow: 0 20px 55px -38px rgba(44, 47, 49, 0.65);
+      transform: translateY(calc((1 - var(--scene-progress, 0)) * 34px));
+      will-change: transform;
+    }
+
+    .floating-stat strong {
+      display: block;
+      color: var(--primary);
+      font-family: "Plus Jakarta Sans", Inter, sans-serif;
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .floating-stat span {
+      display: block;
+      margin-top: 0.35rem;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .project-copy {
+      display: grid;
+      gap: 1.35rem;
+      padding: 2.5rem 1rem;
+    }
+
+    .project-copy h3 {
+      font-size: clamp(2rem, 4vw, 4.15rem);
+      letter-spacing: 0;
+      max-width: 620px;
+    }
+
+    .project-copy p {
+      color: var(--muted);
+      max-width: 620px;
+      font-size: 1rem;
+    }
+
+    .source-link {
+      color: var(--primary);
+      font-weight: 800;
+      width: fit-content;
+    }
+
+    .progress-track {
+      height: 0.42rem;
+      width: min(100%, 420px);
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(112, 42, 225, 0.12);
+    }
+
+    .progress-track span {
+      display: block;
+      width: 100%;
+      height: 100%;
+      transform-origin: left center;
+      transform: scaleX(var(--scene-progress, 0));
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--primary), var(--teal));
+      will-change: transform;
+    }
+
+    .project-steps {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+      max-width: 650px;
+    }
+
+    .step-card {
+      position: relative;
+      min-height: 154px;
+      padding: 1.15rem;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--ghost);
+      box-shadow: 0 20px 52px -42px rgba(44, 47, 49, 0.52);
+      transform: translate3d(var(--reveal-x-offset, 0px), 0, 0);
+      transition: none;
+      will-change: transform, opacity;
+    }
+
+    .step-card h4 {
+      margin-bottom: 0.48rem;
+      font-size: 1rem;
+    }
+
+    .step-card p {
+      font-size: 0.86rem;
+    }
+
+    .metric-band {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+      max-width: 650px;
+    }
+
+    .metric-tile {
+      padding: 1rem;
+      border-radius: 14px;
+      background: var(--surface-white);
+      box-shadow: 0 16px 42px -34px rgba(44, 47, 49, 0.42);
+    }
+
+    .metric-tile strong {
+      display: block;
+      color: var(--primary);
+      font-family: "Plus Jakarta Sans", Inter, sans-serif;
+      font-size: 1.65rem;
+      line-height: 1;
+    }
+
+    .metric-tile span {
+      display: block;
+      margin-top: 0.4rem;
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 850px;
+      margin: 0 auto;
+      display: grid;
+      gap: 3rem;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      transform: translateX(-50%);
+      background: linear-gradient(var(--primary), var(--secondary), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      top: 2rem;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 999px;
+      background: var(--primary);
+      box-shadow: 0 0 0 0.45rem var(--surface), 0 12px 28px -10px rgba(112, 42, 225, 0.7);
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
+
+    .timeline-meta {
+      text-align: right;
+    }
+
+    .timeline-item:nth-child(even) .timeline-meta {
+      order: 2;
+      text-align: left;
+    }
+
+    .timeline-card {
+      border-radius: 16px;
+      padding: 1.35rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .timeline-card p,
+    .timeline-meta p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .timeline-meta h3 {
+      margin-bottom: 0.35rem;
+    }
+
+    .experience-focus {
+      display: grid;
+      gap: 0.72rem;
+    }
+
+    .experience-focus span {
+      display: block;
+      padding: 0.86rem;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.62);
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+
+    .experience-focus strong {
+      display: block;
+      margin-bottom: 0.26rem;
+      color: var(--ink);
+      font-family: "Plus Jakarta Sans", Inter, sans-serif;
+      font-size: 0.73rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .timeline-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .timeline-tools span {
+      border-radius: 999px;
+      background: rgba(208, 205, 255, 0.46);
+      color: #382bc0;
+      padding: 0.34rem 0.56rem;
+      font-family: "Plus Jakarta Sans", Inter, sans-serif;
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .contact-shell {
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .contact-panel {
+      width: min(100%, 960px);
+      border-radius: 24px;
+      padding: 3.2rem;
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(320px, 1.08fr);
+      gap: 3rem;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .contact-methods {
+      display: grid;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .contact-method {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .contact-method .icon {
+      margin: 0;
+      flex: 0 0 auto;
+    }
+
+    .contact-copy {
+      display: block;
+    }
+
+    .contact-copy span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .contact-method strong {
+      display: block;
+      color: var(--ink);
+      font-family: "Plus Jakarta Sans", Inter, sans-serif;
+      font-size: 1rem;
+      text-transform: none;
+      word-break: break-word;
+    }
+
+    form {
+      display: grid;
+      gap: 1rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.35rem;
+      color: var(--muted);
+      font-family: "Plus Jakarta Sans", Inter, sans-serif;
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 0;
+      border-radius: 8px;
+      background: var(--surface-high);
+      color: var(--ink);
+      padding: 0.92rem 1rem;
+      outline: 0;
+      resize: vertical;
+      transition: box-shadow 180ms ease, background 180ms ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      background: var(--surface-white);
+      box-shadow: inset 0 -2px 0 var(--primary), 0 0 0 3px rgba(112, 42, 225, 0.1);
+    }
+
+    .form-status {
+      min-height: 1.2rem;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .site-footer {
+      background: #f8fafb;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .footer-inner {
+      width: min(100% - 2rem, 1180px);
+      min-height: 92px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .reveal {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 700ms ease, transform 700ms var(--ease);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    [data-tilt] {
+      transform-style: preserve-3d;
+      transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translate3d(0, var(--parallax-y, 0px), 0);
+      transition: transform 260ms ease;
+      will-change: transform;
+    }
+
+    @media (max-width: 980px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 4rem;
+      }
+
+      .hero-grid,
+      .split-grid,
+      .case-card,
+      .case-card:nth-child(even),
+      .project-dive,
+      .project-dive:nth-child(even),
+      .lab-card,
+      .contact-panel {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 3.5rem;
+      }
+
+      h2 {
+        font-size: 2.35rem;
+      }
+
+      .hero-stage {
+        min-height: 520px;
+      }
+
+      .data-slab {
+        inset: 3.2rem 2.6rem 2.2rem;
+      }
+
+      .case-card:nth-child(even) .case-content {
+        order: 2;
+      }
+
+      .case-card:nth-child(even) .case-media {
+        order: 1;
+      }
+
+      .project-dive:nth-child(even) .project-visual,
+      .project-dive:nth-child(even) .project-copy {
+        order: initial;
+      }
+
+      .project-visual {
+        position: relative;
+        top: auto;
+        min-height: 420px;
+      }
+
+      .project-visual img {
+        min-height: 420px;
+      }
+
+      .skills-grid,
+      .education-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .nav {
+        min-height: 64px;
+      }
+
+      .brand {
+        font-size: 0.98rem;
+      }
+
+      .nav-actions .btn-glass {
+        display: none;
+      }
+
+      .section {
+        padding: 4.5rem 0;
+      }
+
+      h1 {
+        font-size: 2.7rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      .lead {
+        font-size: 1rem;
+      }
+
+      .hero-stage {
+        min-height: 420px;
+      }
+
+      .data-slab {
+        inset: 2rem 1.3rem 4.5rem;
+        transform: rotate(5deg);
+        border-radius: 18px;
+      }
+
+      .floating-metric {
+        right: 0.2rem;
+        top: 1.1rem;
+        width: 118px;
+      }
+
+      .stack-card {
+        left: 0;
+        right: 0;
+        bottom: 0.4rem;
+        width: auto;
+      }
+
+      .feature-grid,
+      .skills-grid,
+      .education-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-head p {
+        margin-top: 1rem;
+      }
+
+      .case-content,
+      .contact-panel {
+        padding: 1.35rem;
+      }
+
+      .case-card {
+        min-height: auto;
+      }
+
+      .case-media {
+        min-height: 300px;
+      }
+
+      .work-scroll {
+        gap: 2rem;
+      }
+
+      .project-dive {
+        min-height: auto;
+        padding: 0.75rem;
+        border-radius: 22px;
+      }
+
+      .project-copy {
+        padding: 1rem 0.35rem 1.35rem;
+      }
+
+      .project-copy h3 {
+        font-size: 2rem;
+      }
+
+      .project-steps,
+      .metric-band {
+        grid-template-columns: 1fr;
+      }
+
+      .project-visual,
+      .project-visual img {
+        min-height: 300px;
+      }
+
+      .pipeline-visual {
+        min-height: 360px;
+      }
+
+      .azure-orbit {
+        width: 100%;
+        min-height: 300px;
+        transform: rotateX(48deg) rotateZ(calc(-10deg + (var(--scene-progress, 0) * 12deg))) scale(0.72);
+      }
+
+      .pipeline-node {
+        width: 6.4rem;
+        min-height: 4rem;
+        padding: 0.65rem;
+        font-size: 0.78rem;
+      }
+
+      .timeline::before,
+      .timeline-dot {
+        left: 0.45rem;
+      }
+
+      .timeline-item,
+      .timeline-item:nth-child(even) {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding-left: 2rem;
+      }
+
+      .timeline-meta,
+      .timeline-item:nth-child(even) .timeline-meta {
+        order: 1;
+        text-align: left;
+      }
+
+      .timeline-card {
+        order: 2;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+
+      [data-tilt] {
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="#main" aria-label="Ghazi Abbas portfolio home">GHAZI_ABBAS</a>
+      <div class="nav-links" aria-label="Page sections">
+        <a href="#work">Work</a>
+        <a href="#insights">Insights</a>
+        <a href="#laboratory">Laboratory</a>
+        <a href="#about">About</a>
+      </div>
+      <div class="nav-actions">
+        <a class="btn btn-glass" href="https://www.datascienceportfol.io/ghaziabbas832" target="_blank" rel="noreferrer">Resume</a>
+        <a class="btn btn-primary" href="#contact">Hire Me</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero section" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Available for Data Analyst and BI roles</p>
+          <h1 id="hero-title">Refracting <span class="text-gradient">Data</span> Into Decisions.</h1>
+          <p class="lead">I am Ghazi Abbas, a Melbourne-based Data Analyst building Tableau dashboards, Power BI reporting automation, SQL reporting datasets, and stakeholder-ready insights across sales, onboarding, operations, and customer performance.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#work">View Case Studies</a>
+            <a class="btn btn-line" href="#insights">The Methodology</a>
+          </div>
+          <div class="hero-proof" aria-label="Portfolio highlights">
+            <div class="proof-pill" data-trace>
+              <strong>60%</strong>
+              <span>Reporting time cut</span>
+            </div>
+            <div class="proof-pill" data-trace>
+              <strong>3</strong>
+              <span>Analytics roles</span>
+            </div>
+            <div class="proof-pill" data-trace>
+              <strong>SQL</strong>
+              <span>Reporting core</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-stage reveal" aria-label="Immersive analytics visual">
+          <div class="data-slab" data-tilt data-parallax="0.08" data-trace>
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuaMsA24GV3E4kSc0TWw71rq2TsLTYP4tPgj8aiZIjvHqsJL6blBg7_jsAcFEVqZi0ShG1c9YS8BRgJpURuUCnltXObSsrFsxDNJYeBbY6kkQZG8__QMoSSxqHofxNSOD-DAaAjPQT1K3OMIO_XmoLRGEwGELB-vbXfnFqY9gbcOvWLixPbssdfkfWV50lCuOJ6Sav-8TYAnRtI45NcVopS0-6j09TnI2jXwkyUixZ4LCqLT8wqCGn4PDA2TK5UtAxMVmv5-AdkYw" alt="Abstract purple glass prism with refracted data-like light rays">
+          </div>
+          <div class="floating-metric" data-parallax="-0.05">
+            <strong>60%</strong>
+            <span>Less manual reporting at A8 Consulting</span>
+          </div>
+          <div class="stack-card" data-parallax="0.04" data-trace>
+            <h3>Dashboard Stack</h3>
+            <p>Tableau, Power BI, SQL, Python, DAX, Power Query, Salesforce validation.</p>
+            <div class="mini-stack" aria-label="Technical stack">
+              <span class="chip">Tableau</span>
+              <span class="chip">Power BI</span>
+              <span class="chip">SQL</span>
+              <span class="chip">Python</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="insights" class="section section-low" aria-labelledby="insights-title">
+      <div class="wrap split-grid">
+        <div class="reveal">
+          <p class="eyebrow">The Analyst</p>
+          <h2 id="insights-title">Strategy is data, shaped for action.</h2>
+          <p class="lead">My work sits between business questions and reliable reporting. I translate messy operational inputs into dashboards, reusable datasets, and decision-support analysis that non-technical stakeholders can use without waiting on manual spreadsheet cycles.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card reveal" data-tilt data-trace>
+            <div class="icon">01</div>
+            <h3>Stakeholder Translation</h3>
+            <p>Sales, onboarding, operations, and founders get reporting shaped around their actual decisions.</p>
+          </article>
+          <article class="feature-card reveal" data-tilt data-trace>
+            <div class="icon">02</div>
+            <h3>SQL Reporting Models</h3>
+            <p>CTEs, joins, and window functions turn transactional data into analysis-ready datasets.</p>
+          </article>
+          <article class="feature-card reveal" data-tilt data-trace>
+            <div class="icon">03</div>
+            <h3>BI Automation</h3>
+            <p>Power BI refresh flows and Tableau dashboards reduce recurring manual reporting effort.</p>
+          </article>
+          <article class="feature-card reveal" data-tilt data-trace>
+            <div class="icon">04</div>
+            <h3>Data Quality</h3>
+            <p>Salesforce records and operational inputs are validated so dashboards stay trusted.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="laboratory" class="section" aria-labelledby="skills-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Precision Arsenal</p>
+            <h2 id="skills-title">Tools I use to make reporting move.</h2>
+          </div>
+          <p>Built around practical BI delivery, data preparation, commercial analysis, and stakeholder communication.</p>
+        </div>
+        <div class="skills-grid">
+          <article class="skill-card reveal" data-tilt data-trace>
+            <div class="icon">Py</div>
+            <h3>Python</h3>
+            <p>Pandas and NumPy for exploratory analysis, cleaning, churn patterns, and ad-hoc analysis.</p>
+          </article>
+          <article class="skill-card reveal" data-tilt data-trace>
+            <div class="icon">SQL</div>
+            <h3>SQL and Databases</h3>
+            <p>PostgreSQL, MySQL, CTEs, joins, window functions, reporting datasets, and query refinement.</p>
+          </article>
+          <article class="skill-card reveal" data-tilt data-trace>
+            <div class="icon">BI</div>
+            <h3>Power BI</h3>
+            <p>Power Query, DAX, SQL and Excel refresh automation, and stakeholder-ready reporting.</p>
+          </article>
+          <article class="skill-card reveal" data-tilt data-trace>
+            <div class="icon">Tab</div>
+            <h3>Tableau</h3>
+            <p>Sales dashboards, KPI monitoring, LOD expressions, parameters, and calculated fields.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" class="section section-low" aria-labelledby="work-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Selected Projects</p>
+            <h2 id="work-title">Six builds, one reporting spine.</h2>
+          </div>
+          <p>Dashboard builds, operations reporting, and Azure pipeline work shaped into immersive case studies with direct dashboard links where available.</p>
+        </div>
+
+        <div class="work-scroll">
+          <article class="project-dive reveal" id="project-superstore-dashboard" data-scroll-scene data-depth-card data-trace>
+            <div class="project-copy">
+              <p class="eyebrow">Tableau Advanced</p>
+              <h3>Superstore Dashboard</h3>
+              <p>Multi-metric sales dashboard with clickable KPI buttons that dynamically filter charts, maps, product views, and customer insights. The build uses Parameter Actions, Calculated Fields, Data Visualization, and Multi-sheet Filtering to turn a familiar Superstore dataset into a stakeholder-ready reporting surface.</p>
+              <div class="progress-track" aria-label="Scroll progress"><span data-progress></span></div>
+              <div class="project-steps">
+                <div class="step-card" data-reveal-x="left">
+                  <h4>Challenge</h4>
+                  <p>Sales views were fragmented across categories, geography, products, and customer cuts.</p>
+                </div>
+                <div class="step-card" data-reveal-x="right">
+                  <h4>Interaction</h4>
+                  <p>Clickable KPI buttons control the wider dashboard so users can move from top-level health to detail.</p>
+                </div>
+                <div class="step-card" data-reveal-x="left">
+                  <h4>Build</h4>
+                  <p>Tableau parameter actions and calculated fields create a compact analytical flow.</p>
+                </div>
+                <div class="step-card" data-reveal-x="right">
+                  <h4>Outcome</h4>
+                  <p>Geographic, category, product, customer, and YoY growth tracking live in one experience.</p>
+                </div>
+              </div>
+              <div class="metric-band">
+                <div class="metric-tile"><strong data-counter data-target="4">4</strong><span>Analysis views</span></div>
+                <div class="metric-tile"><strong data-counter data-target="100">100</strong><span>Interactive focus</span></div>
+                <div class="metric-tile"><strong>YoY</strong><span>Growth lens</span></div>
+              </div>
+              <a class="source-link" href="https://public.tableau.com/app/profile/ghazi.abbas/viz/SuperstoreDashboard__17758255831890/Dashboard1" target="_blank" rel="noreferrer">Open Tableau dashboard</a>
+            </div>
+            <div class="project-visual dashboard-visual" data-parallax="0.06">
+              <span class="project-index">Portfolio project</span>
+              <img class="dashboard-shot" src="assets/projects/superstore-dashboard-tableau.png" alt="Superstore Dashboard Tableau screenshot">
+              <div class="floating-stat">
+                <strong>Tableau</strong>
+                <span>Parameter actions, calculated fields, and multi-sheet filtering.</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-dive reveal" id="project-superstore-performance" data-scroll-scene data-depth-card data-trace>
+            <div class="project-copy">
+              <p class="eyebrow">Retail Performance</p>
+              <h3>Superstore Performance Dashboard</h3>
+              <p>A Year-to-Date retail performance dashboard built to identify growth drivers, evaluate discounting strategy, and uncover Regional Profitability gaps. It brings performance signals into a single Tableau story so commercial questions can be answered faster.</p>
+              <div class="progress-track" aria-label="Scroll progress"><span data-progress></span></div>
+              <div class="project-steps">
+                <div class="step-card" data-reveal-x="left">
+                  <h4>Question</h4>
+                  <p>Which regions, product lines, and discounting patterns explain YTD performance?</p>
+                </div>
+                <div class="step-card" data-reveal-x="right">
+                  <h4>Model</h4>
+                  <p>Performance dimensions are organised around sales, growth, profitability, and regional comparison.</p>
+                </div>
+                <div class="step-card" data-reveal-x="left">
+                  <h4>Story</h4>
+                  <p>Executives can scan high-level movement, then isolate the parts of the business causing variance.</p>
+                </div>
+                <div class="step-card" data-reveal-x="right">
+                  <h4>Decision</h4>
+                  <p>The dashboard supports pricing, discounting, and regional performance conversations.</p>
+                </div>
+              </div>
+              <div class="metric-band">
+                <div class="metric-tile"><strong>YTD</strong><span>Performance lens</span></div>
+                <div class="metric-tile"><strong data-counter data-target="3">3</strong><span>Core questions</span></div>
+                <div class="metric-tile"><strong>ROI</strong><span>Discount view</span></div>
+              </div>
+              <a class="source-link" href="https://public.tableau.com/app/profile/ghazi.abbas/viz/SuperstorePerformanceDashboard_17705880947580/Dashboard1" target="_blank" rel="noreferrer">Open Tableau dashboard</a>
+            </div>
+            <div class="project-visual dashboard-visual" data-parallax="0.05">
+              <span class="project-index">Portfolio project</span>
+              <img class="dashboard-shot" src="assets/projects/superstore-performance-tableau.png" alt="Superstore Performance Dashboard Tableau screenshot">
+              <div class="floating-stat">
+                <strong>Tableau</strong>
+                <span>Growth drivers, discounting strategy, and profitability gaps.</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-dive reveal" id="project-sales-onboarding" data-scroll-scene data-depth-card data-trace>
+            <div class="project-copy">
+              <p class="eyebrow">Operations Visibility</p>
+              <h3>Sales &amp; Onboarding Operational Dashboard</h3>
+              <p>A high-impact operational dashboard to monitor the end-to-end lifecycle of sales and onboarding cases. The goal is practical: improve productivity, reduce Case Aging, and make workload distribution and regional performance visible without waiting for manual status checks.</p>
+              <div class="progress-track" aria-label="Scroll progress"><span data-progress></span></div>
+              <div class="project-steps">
+                <div class="step-card" data-reveal-x="left">
+                  <h4>Challenge</h4>
+                  <p>Teams need to understand where cases sit, who carries workload, and where ageing risk is forming.</p>
+                </div>
+                <div class="step-card" data-reveal-x="right">
+                  <h4>Workflow</h4>
+                  <p>The dashboard tracks operational status from sales handoff through onboarding movement.</p>
+                </div>
+                <div class="step-card" data-reveal-x="left">
+                  <h4>Visibility</h4>
+                  <p>Regional performance and workload distribution become easier to compare at a glance.</p>
+                </div>
+                <div class="step-card" data-reveal-x="right">
+                  <h4>Use</h4>
+                  <p>Managers can spot bottlenecks, redistribute effort, and keep onboarding flow cleaner.</p>
+                </div>
+              </div>
+              <div class="metric-band">
+                <div class="metric-tile"><strong data-counter data-target="360">360</strong><span>Lifecycle view</span></div>
+                <div class="metric-tile"><strong>Live</strong><span>Workload view</span></div>
+                <div class="metric-tile"><strong>Case</strong><span>Ageing focus</span></div>
+              </div>
+              <a class="source-link" href="https://public.tableau.com/app/profile/ghazi.abbas/viz/SalesOnboardingOperationalDashboard/Dashboard1" target="_blank" rel="noreferrer">Open Tableau dashboard</a>
+            </div>
+            <div class="project-visual dashboard-visual" data-parallax="0.06">
+              <span class="project-index">Portfolio project</span>
+              <img class="dashboard-shot" src="assets/projects/sales-onboarding-tableau.png" alt="Sales and onboarding operational dashboard Tableau screenshot">
+              <div class="floating-stat">
+                <strong>Ops</strong>
+                <span>Sales cases, onboarding status, workload, and regional performance.</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-dive reveal" id="project-hospital-er" data-scroll-scene data-depth-card data-trace>
+            <div class="project-copy">
+              <p class="eyebrow">Power BI Operations</p>
+              <h3>Hospital Emergency Room Dashboard</h3>
+              <p>Interactive ER performance dashboard in Power BI for monitoring Patient Flow, wait times, admission status, and satisfaction scores. It gives administrators an operational KPI view so bottlenecks are easier to discuss and improve.</p>
+              <div class="progress-track" aria-label="Scroll progress"><span data-progress></span></div>
+              <div class="project-steps">
+                <div class="step-card" data-reveal-x="left">
+                  <h4>Challenge</h4>
+                  <p>Emergency-room signals can be hard to interpret when flow, wait time, admission, and satisfaction sit apart.</p>
+                </div>
+                <div class="step-card" data-reveal-x="right">
+                  <h4>Preparation</h4>
+                  <p>Power Query supports cleaning and transformation before the dashboard layer.</p>
+                </div>
+                <div class="step-card" data-reveal-x="left">
+                  <h4>Measures</h4>
+                  <p>DAX measures and calculated columns create reusable KPI logic.</p>
+                </div>
+                <div class="step-card" data-reveal-x="right">
+                  <h4>Outcome</h4>
+                  <p>Administrators get one view of patient movement, waits, admissions, satisfaction, and bottlenecks.</p>
+                </div>
+              </div>
+              <div class="metric-band">
+                <div class="metric-tile"><strong data-counter data-target="4">4</strong><span>ER signals</span></div>
+                <div class="metric-tile"><strong>DAX</strong><span>KPI measures</span></div>
+                <div class="metric-tile"><strong>Flow</strong><span>Patient lens</span></div>
+              </div>
+              <a class="source-link" href="https://www.datascienceportfol.io/ghaziabbas832/projects/6" target="_blank" rel="noreferrer">View portfolio project</a>
+            </div>
+            <div class="project-visual dashboard-visual" data-parallax="0.05">
+              <span class="project-index">Portfolio project</span>
+              <img class="dashboard-shot" src="assets/projects/hospital-dashboard.png" alt="Hospital Emergency Room Dashboard screenshot">
+              <div class="floating-stat">
+                <strong>Power BI</strong>
+                <span>Power Query, DAX, data cleaning, transformation, and KPI dashboard design.</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-dive reveal" id="project-azure-postgresql" data-scroll-scene data-depth-card data-trace>
+            <div class="project-copy">
+              <p class="eyebrow">Azure Data Engineering</p>
+              <h3>Azure PostgreSQL Pipeline</h3>
+              <p>Built an Azure pipeline around PostgreSQL sources so raw operational tables could move into a cleaner analytics layer. The focus was reliable ingestion, lightweight transformation, and a reporting-ready structure that could feed BI tools without manual exports.</p>
+              <div class="progress-track" aria-label="Scroll progress"><span data-progress></span></div>
+              <div class="project-steps">
+                <div class="step-card" data-reveal-x="left">
+                  <h4>Source</h4>
+                  <p>PostgreSQL tables were treated as the system of record for transactional reporting inputs.</p>
+                </div>
+                <div class="step-card" data-reveal-x="right">
+                  <h4>Orchestration</h4>
+                  <p>Azure Data Factory coordinated extraction, staged movement, and repeatable pipeline runs.</p>
+                </div>
+                <div class="step-card" data-reveal-x="left">
+                  <h4>Landing</h4>
+                  <p>Blob Storage landing zone patterns kept raw pulls separate from curated reporting outputs.</p>
+                </div>
+                <div class="step-card" data-reveal-x="right">
+                  <h4>Serving</h4>
+                  <p>Cleaned datasets were shaped for BI dashboards, checks, and downstream analysis.</p>
+                </div>
+              </div>
+              <div class="metric-band">
+                <div class="metric-tile"><strong>ADF</strong><span>Orchestration</span></div>
+                <div class="metric-tile"><strong>PG</strong><span>PostgreSQL source</span></div>
+                <div class="metric-tile"><strong>BI</strong><span>Reporting layer</span></div>
+              </div>
+              <a class="source-link" href="#contact">Discuss Azure pipeline</a>
+            </div>
+            <div class="project-visual pipeline-visual" data-parallax="0.07" aria-label="3D Azure PostgreSQL pipeline visual">
+              <div class="azure-orbit">
+                <span class="orbit-ring"></span>
+                <span class="orbit-ring"></span>
+                <span class="pipeline-beam"></span>
+                <span class="pipeline-pulse"></span>
+                <div class="pipeline-node is-source">PostgreSQL<small>Source</small></div>
+                <div class="pipeline-node is-factory">Azure Data Factory<small>Orchestrate</small></div>
+                <div class="pipeline-node is-postgres">Curated Store<small>Model</small></div>
+                <div class="pipeline-node is-bi">Power BI / Tableau<small>Serve</small></div>
+              </div>
+              <div class="floating-stat">
+                <strong>Azure</strong>
+                <span>Azure Data Factory, Azure Database for PostgreSQL, Blob Storage landing zone, and BI-ready outputs.</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-dive reveal" id="project-azure-incremental" data-scroll-scene data-depth-card data-trace>
+            <div class="project-copy">
+              <p class="eyebrow">Cloud Reporting Pipeline</p>
+              <h3>Azure Data Factory Incremental Sync</h3>
+              <p>A second Azure pipeline pattern focused on Incremental loads from PostgreSQL into analytics-ready tables. It keeps refreshes lean by moving changed records, validating row counts, and preserving clean handoff points for dashboards.</p>
+              <div class="progress-track" aria-label="Scroll progress"><span data-progress></span></div>
+              <div class="project-steps">
+                <div class="step-card" data-reveal-x="left">
+                  <h4>Watermark</h4>
+                  <p>Timestamp-style logic identifies changed records instead of reprocessing every row.</p>
+                </div>
+                <div class="step-card" data-reveal-x="right">
+                  <h4>Validation</h4>
+                  <p>Row-count checks and status outputs make failures easier to spot before reporting refresh.</p>
+                </div>
+                <div class="step-card" data-reveal-x="left">
+                  <h4>Transform</h4>
+                  <p>SQL models shape raw extracts into business-friendly reporting tables.</p>
+                </div>
+                <div class="step-card" data-reveal-x="right">
+                  <h4>Refresh</h4>
+                  <p>Dashboards receive cleaner, smaller updates with fewer manual touch points.</p>
+                </div>
+              </div>
+              <div class="metric-band">
+                <div class="metric-tile"><strong>Δ</strong><span>Incremental loads</span></div>
+                <div class="metric-tile"><strong>SQL</strong><span>Models</span></div>
+                <div class="metric-tile"><strong>QA</strong><span>Checks</span></div>
+              </div>
+              <a class="source-link" href="#contact">Talk through the build</a>
+            </div>
+            <div class="project-visual pipeline-visual" data-parallax="0.08" aria-label="3D Azure incremental sync visual">
+              <div class="azure-orbit">
+                <span class="orbit-ring"></span>
+                <span class="orbit-ring"></span>
+                <span class="pipeline-beam"></span>
+                <span class="pipeline-pulse"></span>
+                <div class="pipeline-node is-source">PostgreSQL<small>Delta</small></div>
+                <div class="pipeline-node is-factory">ADF Trigger<small>Schedule</small></div>
+                <div class="pipeline-node is-postgres">SQL Model<small>Validate</small></div>
+                <div class="pipeline-node is-bi">Dashboard<small>Refresh</small></div>
+              </div>
+              <div class="floating-stat">
+                <strong>Sync</strong>
+                <span>Incremental loads, validation checks, SQL modelling, and dashboard-ready refreshes.</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section" aria-labelledby="experience-title">
+      <div class="wrap">
+        <div class="section-head reveal" style="justify-content:center;text-align:center">
+          <div>
+            <p class="eyebrow" style="justify-content:center">Chronological Curation</p>
+            <h2 id="experience-title" class="text-gradient">Professional Odyssey</h2>
+          </div>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item reveal">
+            <div class="timeline-meta">
+              <h3>Veolia Australia</h3>
+              <p>Sales Data Analyst | Sep 2025 - Current</p>
+            </div>
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <div class="timeline-card" data-trace>
+              <p>Collaborating with sales, onboarding, and operations teams to build Tableau dashboards from SQL sources, analyse spend and service usage, and validate Salesforce reporting inputs.</p>
+              <div class="experience-focus" aria-label="Veolia role highlights">
+                <span><strong>Dashboard delivery</strong> Turning SQL-backed sales and onboarding data into Tableau views that help teams monitor pipeline health, service usage, and customer activity.</span>
+                <span><strong>Data trust</strong> Checking Salesforce and operational inputs before they reach reporting, so stakeholders can rely on the numbers during weekly reviews.</span>
+                <span><strong>Business rhythm</strong> Translating ad hoc sales and operations questions into repeatable reporting logic instead of one-off spreadsheet checks.</span>
+              </div>
+              <div class="timeline-tools" aria-label="Veolia tools">
+                <span>Tableau</span>
+                <span>SQL</span>
+                <span>Salesforce</span>
+                <span>Operations</span>
+              </div>
+            </div>
+          </article>
+          <article class="timeline-item reveal">
+            <div class="timeline-meta">
+              <h3>A8 Consulting</h3>
+              <p>Data Analyst Intern | Feb 2024 - Aug 2025</p>
+            </div>
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <div class="timeline-card" data-trace>
+              <p>Designed Tableau dashboards, automated Power BI refresh, cleaned data from MySQL, Google Sheets and CSVs, and built metrics for churn, repeat purchase, and campaign ROI.</p>
+              <div class="experience-focus" aria-label="A8 Consulting role highlights">
+                <span><strong>Automation impact</strong> Replaced recurring manual reporting cycles with refreshed Power BI outputs and cleaner source pipelines across MySQL, Sheets, and CSV exports.</span>
+                <span><strong>Commercial metrics</strong> Built KPI logic for churn, repeat purchase, campaign ROI, and customer movement so founders could judge performance faster.</span>
+                <span><strong>Consulting pace</strong> Balanced quick stakeholder asks with reusable data preparation patterns, keeping reports lightweight but defensible.</span>
+              </div>
+              <div class="timeline-tools" aria-label="A8 Consulting tools">
+                <span>Power BI</span>
+                <span>MySQL</span>
+                <span>Tableau</span>
+                <span>Google Sheets</span>
+              </div>
+            </div>
+          </article>
+          <article class="timeline-item reveal">
+            <div class="timeline-meta">
+              <h3>SnP Infotech</h3>
+              <p>Reporting Analyst | Nov 2021 - Jan 2023</p>
+            </div>
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <div class="timeline-card" data-trace>
+              <p>Built Tableau dashboards, wrote PostgreSQL reporting queries, used Python for exploratory analysis, and standardised dashboards for leadership trend monitoring.</p>
+              <div class="experience-focus" aria-label="SnP Infotech role highlights">
+                <span><strong>Reporting foundation</strong> Wrote PostgreSQL queries and shaped reusable datasets for dashboarding, reducing the friction between raw operational data and leadership reporting.</span>
+                <span><strong>Exploratory analysis</strong> Used Python to inspect trends, validate assumptions, and prepare clearer views before committing them into dashboards.</span>
+                <span><strong>Standardisation</strong> Helped turn scattered reporting requests into consistent Tableau dashboards for trend monitoring and review routines.</span>
+              </div>
+              <div class="timeline-tools" aria-label="SnP Infotech tools">
+                <span>PostgreSQL</span>
+                <span>Python</span>
+                <span>Tableau</span>
+                <span>Reporting</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-low" aria-labelledby="education-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Academic Foundation</p>
+            <h2 id="education-title">Education and working knowledge.</h2>
+          </div>
+        </div>
+        <div class="education-grid">
+          <article class="education-card reveal" data-tilt data-trace>
+            <div class="icon">MS</div>
+            <h3>Master of Data Science</h3>
+            <p>Monash University, completed Dec 2024.</p>
+          </article>
+          <article class="education-card reveal" data-tilt data-trace>
+            <div class="icon">BCA</div>
+            <h3>Bachelor of Computer Applications</h3>
+            <p>SS Jain Subodh College, completed Apr 2021.</p>
+          </article>
+          <article class="education-card reveal" data-tilt data-trace>
+            <div class="icon">DS</div>
+            <h3>Modern Data Stack Exposure</h3>
+            <p>Azure, Azure Data Factory, Snowflake, dbt, Git, Salesforce, and Excel.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact-shell" aria-labelledby="contact-title">
+      <div class="contact-panel reveal" data-trace>
+        <div>
+          <p class="eyebrow">Initiate Sync</p>
+          <h2 id="contact-title">Let us make reporting clearer.</h2>
+          <p class="lead">I am open to Data Analyst, Business Intelligence Analyst, and market or performance reporting roles in Melbourne.</p>
+          <div class="contact-methods">
+            <a class="contact-method" href="mailto:ghaziabbas832@gmail.com">
+              <span class="icon">@</span>
+              <span class="contact-copy"><span>Email</span><strong>ghaziabbas832@gmail.com</strong></span>
+            </a>
+            <div class="contact-method">
+              <span class="icon">AU</span>
+              <span class="contact-copy"><span>Base</span><strong>Melbourne 3000</strong></span>
+            </div>
+            <a class="contact-method" href="tel:0469303666">
+              <span class="icon">Ph</span>
+              <span class="contact-copy"><span>Phone</span><strong>0469303666</strong></span>
+            </a>
+          </div>
+        </div>
+        <form id="contact-form" action="https://formsubmit.co/ghaziabbas832@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Portfolio inquiry for Ghazi Abbas">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0">
+          <div>
+            <label for="name">Identity Name</label>
+            <input id="name" name="name" autocomplete="name" placeholder="Your name" required>
+          </div>
+          <div>
+            <label for="email">Secure Channel</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required>
+          </div>
+          <div>
+            <label for="message">Message Payload</label>
+            <textarea id="message" name="message" rows="4" placeholder="Briefly describe the reporting or analytics challenge..." required></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Transmit Signal</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <strong>Ghazi Abbas</strong>
+      <span>© 2026 Data Analyst Portfolio</span>
+      <div class="footer-links">
+        <a href="#work">Case Studies</a>
+        <a href="https://www.datascienceportfol.io/ghaziabbas832" target="_blank" rel="noreferrer">Portfolio</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+      document.querySelectorAll("[data-trace]").forEach((element) => {
+        element.addEventListener("pointermove", (event) => {
+          const rect = element.getBoundingClientRect();
+          const x = ((event.clientX - rect.left) / rect.width) * 100;
+          const y = ((event.clientY - rect.top) / rect.height) * 100;
+          element.style.setProperty("--trace-x", `${clamp(x, 0, 100)}%`);
+          element.style.setProperty("--trace-y", `${clamp(y, 0, 100)}%`);
+        });
+      });
+
+      if (!reducedMotion) {
+        document.querySelectorAll("[data-tilt]").forEach((element) => {
+          element.addEventListener("pointermove", (event) => {
+            const rect = element.getBoundingClientRect();
+            const px = (event.clientX - rect.left) / rect.width - 0.5;
+            const py = (event.clientY - rect.top) / rect.height - 0.5;
+            element.style.setProperty("--ry", `${clamp(px * 9, -7, 7)}deg`);
+            element.style.setProperty("--rx", `${clamp(py * -9, -7, 7)}deg`);
+          });
+
+          element.addEventListener("pointerleave", () => {
+            element.style.setProperty("--rx", "0deg");
+            element.style.setProperty("--ry", "0deg");
+          });
+        });
+
+        document.querySelectorAll("[data-depth-card]").forEach((element) => {
+          element.addEventListener("pointermove", (event) => {
+            const rect = element.getBoundingClientRect();
+            const px = (event.clientX - rect.left) / rect.width - 0.5;
+            const py = (event.clientY - rect.top) / rect.height - 0.5;
+            element.style.setProperty("--depth-ry", `${clamp(px * 3.2, -2.4, 2.4)}deg`);
+            element.style.setProperty("--depth-rx", `${clamp(py * -2.8, -2.2, 2.2)}deg`);
+          });
+
+          element.addEventListener("pointerleave", () => {
+            element.style.setProperty("--depth-rx", "0deg");
+            element.style.setProperty("--depth-ry", "0deg");
+          });
+        });
+
+        const parallaxItems = [...document.querySelectorAll("[data-parallax]")];
+        const scrollScenes = [...document.querySelectorAll("[data-scroll-scene]")];
+        const revealItems = [...document.querySelectorAll("[data-reveal-x]")];
+        const progressBarsByScene = new Map(scrollScenes.map((scene) => [scene, [...scene.querySelectorAll("[data-progress]")]]));
+        const activeScenes = new Set();
+        const activeRevealItems = new Set();
+        let motionFrame = null;
+
+        const updateMotion = () => {
+          motionFrame = null;
+          const viewportMid = window.innerHeight / 2;
+          const viewport = window.innerHeight;
+
+          const parallaxUpdates = parallaxItems.map((element) => {
+            const speed = Number(element.dataset.parallax || 0);
+            const rect = element.getBoundingClientRect();
+            const distance = rect.top + rect.height / 2 - viewportMid;
+            return [element, `${clamp(distance * speed, -30, 30)}px`];
+          });
+
+          const sceneUpdates = [...activeScenes].map((scene) => {
+            const rect = scene.getBoundingClientRect();
+
+            if (rect.top > viewport * 1.18 || rect.bottom < -viewport * 0.18) {
+              return null;
+            }
+
+            const progress = clamp((viewport - rect.top) / (viewport + rect.height), 0, 1);
+            return [scene, progress];
+          }).filter(Boolean);
+
+          const revealUpdates = [...activeRevealItems].map((item) => {
+            const rect = item.getBoundingClientRect();
+
+            if (rect.top > viewport * 1.12 || rect.bottom < -viewport * 0.08) {
+              return null;
+            }
+
+            const localProgress = clamp((viewport * 0.94 - rect.top) / (viewport * 0.62), 0, 1);
+            const direction = item.dataset.revealX === "left" ? -1 : 1;
+            const eased = 1 - Math.pow(1 - localProgress, 3);
+            return [item, `${(1 - eased) * direction * 70}px`, String(0.5 + eased * 0.5)];
+          }).filter(Boolean);
+
+          parallaxUpdates.forEach(([element, offset]) => {
+            element.style.setProperty("--parallax-y", offset);
+          });
+
+          sceneUpdates.forEach(([scene, progress]) => {
+            scene.style.setProperty("--scene-progress", progress.toFixed(3));
+            scene.style.setProperty("--visual-y", `${(0.5 - progress) * 30}px`);
+            scene.style.setProperty("--scroll-rx", `${(0.5 - progress) * 1.8}deg`);
+
+            progressBarsByScene.get(scene).forEach((bar) => {
+              bar.style.transform = `scaleX(${progress})`;
+            });
+          });
+
+          revealUpdates.forEach(([item, offset, opacity]) => {
+            item.style.setProperty("--reveal-x-offset", offset);
+            item.style.opacity = opacity;
+          });
+        };
+
+        const queueMotionUpdate = () => {
+          if (motionFrame === null) {
+            motionFrame = requestAnimationFrame(updateMotion);
+          }
+        };
+
+        const sceneObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              activeScenes.add(entry.target);
+            } else {
+              activeScenes.delete(entry.target);
+            }
+          });
+
+          queueMotionUpdate();
+        }, { rootMargin: "18% 0px", threshold: [0, 0.01, 0.35, 0.7, 1] });
+
+        scrollScenes.forEach((scene) => sceneObserver.observe(scene));
+
+        const revealMotionObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              activeRevealItems.add(entry.target);
+            } else {
+              activeRevealItems.delete(entry.target);
+            }
+          });
+
+          queueMotionUpdate();
+        }, { rootMargin: "12% 0px", threshold: [0, 0.2, 0.8] });
+
+        revealItems.forEach((item) => revealMotionObserver.observe(item));
+
+        updateMotion();
+        window.addEventListener("scroll", queueMotionUpdate, { passive: true });
+        window.addEventListener("resize", queueMotionUpdate);
+
+        const animateCounter = (element) => {
+          const target = Number(element.dataset.target || element.textContent || 0);
+
+          if (!Number.isFinite(target) || element.dataset.counted === "true") {
+            return;
+          }
+
+          element.dataset.counted = "true";
+          element.textContent = "0";
+
+          let start = null;
+          const duration = 880;
+
+          const tick = (time) => {
+            if (start === null) {
+              start = time;
+            }
+
+            const progress = clamp((time - start) / duration, 0, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            element.textContent = String(Math.round(target * eased));
+
+            if (progress < 1) {
+              requestAnimationFrame(tick);
+            } else {
+              element.textContent = String(target);
+            }
+          };
+
+          requestAnimationFrame(tick);
+        };
+
+        const counterObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              animateCounter(entry.target);
+              counterObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.56 });
+
+        document.querySelectorAll("[data-counter]").forEach((element) => counterObserver.observe(element));
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.14 });
+
+      document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+
+      const form = document.querySelector("#contact-form");
+      const status = document.querySelector("#form-status");
+      form.addEventListener("submit", (event) => {
+        status.textContent = "Thanks - your message is ready to send.";
+      });
+    })();
+  </script>
+</body>
+</html>
