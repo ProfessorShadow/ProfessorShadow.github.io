@@ -494,6 +494,11 @@
       padding: 1.35rem;
     }
 
+    .offscreen-cache-hint {
+      content-visibility: auto;
+      contain-intrinsic-size: 220px;
+    }
+
     [data-trace]::before {
       content: "";
       position: absolute;
@@ -731,10 +736,19 @@
       display: grid;
       gap: 5.5rem;
       counter-reset: project;
-      perspective: 1400px;
+      perspective: 1800px;
+      perspective-origin: 50% 42%;
     }
 
     .project-dive {
+      --scene-progress: 0;
+      --scroll-rx: 0deg;
+      --scroll-ry: 0deg;
+      --depth-rx: 0deg;
+      --depth-ry: 0deg;
+      --visual-rx: 0deg;
+      --visual-ry: 0deg;
+      --scene-lift: 0px;
       counter-increment: project;
       position: relative;
       display: grid;
@@ -752,8 +766,9 @@
       isolation: isolate;
       contain: paint;
       transform-style: preserve-3d;
-      transform: perspective(1400px) rotateX(calc(var(--scroll-rx, 0deg) + var(--depth-rx, 0deg))) rotateY(var(--depth-ry, 0deg));
+      transform: translate3d(0, 0, 0) rotateX(calc(var(--scroll-rx) + var(--depth-rx))) rotateY(calc(var(--scroll-ry) + var(--depth-ry))) translateY(var(--scene-lift));
       will-change: transform;
+      backface-visibility: hidden;
     }
 
     .project-dive::after {
@@ -802,11 +817,12 @@
       overflow: hidden;
       background: #111318;
       box-shadow: 0 30px 74px -48px rgba(44, 47, 49, 0.7);
-      transform: translate3d(0, calc(var(--visual-y, 0px) + var(--parallax-y, 0px)), 0) rotate(calc(var(--scene-progress, 0) * -1.6deg));
+      transform: translate3d(0, calc(var(--visual-y, 0px) + var(--parallax-y, 0px)), 0) rotateX(var(--visual-rx)) rotateY(var(--visual-ry)) rotateZ(calc(var(--scene-progress, 0) * -1.6deg));
       transition: none;
       will-change: transform;
       backface-visibility: hidden;
       contain: paint;
+      transform-style: preserve-3d;
     }
 
     .project-visual img {
@@ -858,8 +874,9 @@
       width: min(90%, 520px);
       min-height: 390px;
       transform-style: preserve-3d;
-      transform: rotateX(58deg) rotateZ(calc(-14deg + (var(--scene-progress, 0) * 18deg))) translateY(var(--parallax-y, 0px));
+      transform: translate3d(0, 0, 0) rotateX(calc(58deg + (var(--scene-progress, 0) * -6deg))) rotateZ(calc(-18deg + (var(--scene-progress, 0) * 26deg))) translateY(var(--parallax-y, 0px));
       will-change: transform;
+      backface-visibility: hidden;
     }
 
     .orbit-ring {
@@ -967,12 +984,14 @@
         radial-gradient(circle at calc(30% + var(--scene-progress, 0) * 48%) calc(24% + var(--scene-progress, 0) * 46%), rgba(178, 140, 255, 0.34), transparent 12rem),
         linear-gradient(to bottom, transparent 42%, rgba(17, 19, 24, 0.22));
       mix-blend-mode: screen;
+      transform: translateZ(46px);
     }
 
     .project-visual::after {
       background:
         linear-gradient(to right, rgba(245, 247, 249, 0.82), transparent 22%, transparent 76%, rgba(245, 247, 249, 0.76)),
         linear-gradient(to top, rgba(255, 255, 255, 0.38), transparent 30%);
+      transform: translateZ(28px);
     }
 
     .project-index {
@@ -1033,6 +1052,8 @@
       display: grid;
       gap: 1.35rem;
       padding: 2.5rem 1rem;
+      transform: translateZ(56px);
+      transform-style: preserve-3d;
     }
 
     .project-copy h3 {
@@ -1564,7 +1585,7 @@
       .azure-orbit {
         width: 100%;
         min-height: 300px;
-        transform: rotateX(48deg) rotateZ(calc(-10deg + (var(--scene-progress, 0) * 12deg))) scale(0.72);
+        transform: translate3d(0, 0, 0) rotateX(calc(48deg + (var(--scene-progress, 0) * -4deg))) rotateZ(calc(-12deg + (var(--scene-progress, 0) * 18deg))) scale(0.72);
       }
 
       .pipeline-node {
@@ -1613,6 +1634,14 @@
       }
 
       [data-tilt] {
+        transform: none !important;
+      }
+
+      .project-dive,
+      .project-visual,
+      .project-visual img,
+      .azure-orbit,
+      .floating-stat {
         transform: none !important;
       }
     }
@@ -2205,105 +2234,204 @@
       });
 
       if (!reducedMotion) {
-        document.querySelectorAll("[data-tilt]").forEach((element) => {
-          element.addEventListener("pointermove", (event) => {
-            const rect = element.getBoundingClientRect();
-            const px = (event.clientX - rect.left) / rect.width - 0.5;
-            const py = (event.clientY - rect.top) / rect.height - 0.5;
-            element.style.setProperty("--ry", `${clamp(px * 9, -7, 7)}deg`);
-            element.style.setProperty("--rx", `${clamp(py * -9, -7, 7)}deg`);
+        const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+        const motionStrength = isCoarsePointer ? 0.58 : 1;
+
+        if (!isCoarsePointer) {
+          document.querySelectorAll("[data-tilt]").forEach((element) => {
+            element.addEventListener("pointermove", (event) => {
+              const rect = element.getBoundingClientRect();
+              const px = (event.clientX - rect.left) / rect.width - 0.5;
+              const py = (event.clientY - rect.top) / rect.height - 0.5;
+              element.style.setProperty("--ry", `${clamp(px * 10, -8, 8)}deg`);
+              element.style.setProperty("--rx", `${clamp(py * -10, -8, 8)}deg`);
+            }, { passive: true });
+
+            element.addEventListener("pointerleave", () => {
+              element.style.setProperty("--rx", "0deg");
+              element.style.setProperty("--ry", "0deg");
+            });
           });
 
-          element.addEventListener("pointerleave", () => {
-            element.style.setProperty("--rx", "0deg");
-            element.style.setProperty("--ry", "0deg");
-          });
-        });
+          document.querySelectorAll("[data-depth-card]").forEach((element) => {
+            element.addEventListener("pointermove", (event) => {
+              const rect = element.getBoundingClientRect();
+              const px = (event.clientX - rect.left) / rect.width - 0.5;
+              const py = (event.clientY - rect.top) / rect.height - 0.5;
+              element.style.setProperty("--depth-ry", `${clamp(px * 4.5, -3.6, 3.6)}deg`);
+              element.style.setProperty("--depth-rx", `${clamp(py * -3.8, -3, 3)}deg`);
+            }, { passive: true });
 
-        document.querySelectorAll("[data-depth-card]").forEach((element) => {
-          element.addEventListener("pointermove", (event) => {
-            const rect = element.getBoundingClientRect();
-            const px = (event.clientX - rect.left) / rect.width - 0.5;
-            const py = (event.clientY - rect.top) / rect.height - 0.5;
-            element.style.setProperty("--depth-ry", `${clamp(px * 3.2, -2.4, 2.4)}deg`);
-            element.style.setProperty("--depth-rx", `${clamp(py * -2.8, -2.2, 2.2)}deg`);
+            element.addEventListener("pointerleave", () => {
+              element.style.setProperty("--depth-rx", "0deg");
+              element.style.setProperty("--depth-ry", "0deg");
+            });
           });
-
-          element.addEventListener("pointerleave", () => {
-            element.style.setProperty("--depth-rx", "0deg");
-            element.style.setProperty("--depth-ry", "0deg");
-          });
-        });
+        }
 
         const parallaxItems = [...document.querySelectorAll("[data-parallax]")];
         const scrollScenes = [...document.querySelectorAll("[data-scroll-scene]")];
         const revealItems = [...document.querySelectorAll("[data-reveal-x]")];
         const progressBarsByScene = new Map(scrollScenes.map((scene) => [scene, [...scene.querySelectorAll("[data-progress]")]]));
+        const activeParallaxItems = new Set();
         const activeScenes = new Set();
         const activeRevealItems = new Set();
+        const motionProfiles = new Map();
         let motionFrame = null;
 
-        const updateMotion = () => {
+        parallaxItems.forEach((element) => {
+          motionProfiles.set(element, { current: 0, target: 0, speed: Number(element.dataset.parallax || 0) });
+        });
+
+        scrollScenes.forEach((scene) => {
+          motionProfiles.set(scene, {
+            progress: 0,
+            targetProgress: 0,
+            visual: 0,
+            targetVisual: 0,
+            rx: 0,
+            targetRx: 0,
+            ry: 0,
+            targetRy: 0,
+            lift: 0,
+            targetLift: 0,
+            visualRx: 0,
+            targetVisualRx: 0,
+            visualRy: 0,
+            targetVisualRy: 0,
+          });
+        });
+
+        revealItems.forEach((item) => {
+          motionProfiles.set(item, { x: 0, targetX: 0, opacity: 0.5, targetOpacity: 0.5 });
+        });
+
+        const lerp = (current, target, amount) => current + (target - current) * amount;
+
+        const applyMotionFrame = () => {
           motionFrame = null;
-          const viewportMid = window.innerHeight / 2;
-          const viewport = window.innerHeight;
+          let needsAnotherFrame = false;
+          const smoothing = isCoarsePointer ? 0.24 : 0.18;
 
-          const parallaxUpdates = parallaxItems.map((element) => {
-            const speed = Number(element.dataset.parallax || 0);
-            const rect = element.getBoundingClientRect();
-            const distance = rect.top + rect.height / 2 - viewportMid;
-            return [element, `${clamp(distance * speed, -30, 30)}px`];
+          activeParallaxItems.forEach((element) => {
+            const profile = motionProfiles.get(element);
+            profile.current = lerp(profile.current, profile.target, smoothing);
+            if (Math.abs(profile.current - profile.target) > 0.08) {
+              needsAnotherFrame = true;
+            }
+            element.style.setProperty("--parallax-y", `${profile.current.toFixed(2)}px`);
           });
 
-          const sceneUpdates = [...activeScenes].map((scene) => {
-            const rect = scene.getBoundingClientRect();
+          activeScenes.forEach((scene) => {
+            const profile = motionProfiles.get(scene);
+            profile.progress = lerp(profile.progress, profile.targetProgress, smoothing);
+            profile.visual = lerp(profile.visual, profile.targetVisual, smoothing);
+            profile.rx = lerp(profile.rx, profile.targetRx, smoothing);
+            profile.ry = lerp(profile.ry, profile.targetRy, smoothing);
+            profile.lift = lerp(profile.lift, profile.targetLift, smoothing);
+            profile.visualRx = lerp(profile.visualRx, profile.targetVisualRx, smoothing);
+            profile.visualRy = lerp(profile.visualRy, profile.targetVisualRy, smoothing);
 
-            if (rect.top > viewport * 1.18 || rect.bottom < -viewport * 0.18) {
-              return null;
+            if (
+              Math.abs(profile.progress - profile.targetProgress) > 0.002 ||
+              Math.abs(profile.visual - profile.targetVisual) > 0.08 ||
+              Math.abs(profile.rx - profile.targetRx) > 0.01 ||
+              Math.abs(profile.ry - profile.targetRy) > 0.01 ||
+              Math.abs(profile.lift - profile.targetLift) > 0.08 ||
+              Math.abs(profile.visualRx - profile.targetVisualRx) > 0.01 ||
+              Math.abs(profile.visualRy - profile.targetVisualRy) > 0.01
+            ) {
+              needsAnotherFrame = true;
             }
 
-            const progress = clamp((viewport - rect.top) / (viewport + rect.height), 0, 1);
-            return [scene, progress];
-          }).filter(Boolean);
-
-          const revealUpdates = [...activeRevealItems].map((item) => {
-            const rect = item.getBoundingClientRect();
-
-            if (rect.top > viewport * 1.12 || rect.bottom < -viewport * 0.08) {
-              return null;
-            }
-
-            const localProgress = clamp((viewport * 0.94 - rect.top) / (viewport * 0.62), 0, 1);
-            const direction = item.dataset.revealX === "left" ? -1 : 1;
-            const eased = 1 - Math.pow(1 - localProgress, 3);
-            return [item, `${(1 - eased) * direction * 70}px`, String(0.5 + eased * 0.5)];
-          }).filter(Boolean);
-
-          parallaxUpdates.forEach(([element, offset]) => {
-            element.style.setProperty("--parallax-y", offset);
-          });
-
-          sceneUpdates.forEach(([scene, progress]) => {
-            scene.style.setProperty("--scene-progress", progress.toFixed(3));
-            scene.style.setProperty("--visual-y", `${(0.5 - progress) * 30}px`);
-            scene.style.setProperty("--scroll-rx", `${(0.5 - progress) * 1.8}deg`);
+            scene.style.setProperty("--scene-progress", profile.progress.toFixed(3));
+            scene.style.setProperty("--visual-y", `${profile.visual.toFixed(2)}px`);
+            scene.style.setProperty("--scroll-rx", `${profile.rx.toFixed(3)}deg`);
+            scene.style.setProperty("--scroll-ry", `${profile.ry.toFixed(3)}deg`);
+            scene.style.setProperty("--scene-lift", `${profile.lift.toFixed(2)}px`);
+            scene.style.setProperty("--visual-rx", `${profile.visualRx.toFixed(3)}deg`);
+            scene.style.setProperty("--visual-ry", `${profile.visualRy.toFixed(3)}deg`);
 
             progressBarsByScene.get(scene).forEach((bar) => {
-              bar.style.transform = `scaleX(${progress})`;
+              bar.style.transform = `scaleX(${profile.progress.toFixed(3)})`;
             });
           });
 
-          revealUpdates.forEach(([item, offset, opacity]) => {
-            item.style.setProperty("--reveal-x-offset", offset);
-            item.style.opacity = opacity;
-          });
-        };
+          activeRevealItems.forEach((item) => {
+            const profile = motionProfiles.get(item);
+            profile.x = lerp(profile.x, profile.targetX, smoothing);
+            profile.opacity = lerp(profile.opacity, profile.targetOpacity, smoothing);
 
-        const queueMotionUpdate = () => {
-          if (motionFrame === null) {
-            motionFrame = requestAnimationFrame(updateMotion);
+            if (Math.abs(profile.x - profile.targetX) > 0.08 || Math.abs(profile.opacity - profile.targetOpacity) > 0.004) {
+              needsAnotherFrame = true;
+            }
+
+            item.style.setProperty("--reveal-x-offset", `${profile.x.toFixed(2)}px`);
+            item.style.opacity = profile.opacity.toFixed(3);
+          });
+
+          if (needsAnotherFrame) {
+            startMotionLoop();
           }
         };
+
+        const startMotionLoop = () => {
+          if (motionFrame === null) {
+            motionFrame = requestAnimationFrame(applyMotionFrame);
+          }
+        };
+
+        const updateMotionTargets = () => {
+          const viewport = window.innerHeight;
+          const viewportMid = viewport / 2;
+
+          activeParallaxItems.forEach((element) => {
+            const profile = motionProfiles.get(element);
+            const rect = element.getBoundingClientRect();
+            const distance = rect.top + rect.height / 2 - viewportMid;
+            profile.target = clamp(distance * profile.speed * motionStrength, -42, 42);
+          });
+
+          activeScenes.forEach((scene) => {
+            const profile = motionProfiles.get(scene);
+            const rect = scene.getBoundingClientRect();
+            const progress = clamp((viewport - rect.top) / (viewport + rect.height), 0, 1);
+            const centered = progress - 0.5;
+            profile.targetProgress = progress;
+            profile.targetVisual = (0.5 - progress) * 44 * motionStrength;
+            profile.targetRx = (0.5 - progress) * 5.4 * motionStrength;
+            profile.targetRy = centered * 3.8 * motionStrength;
+            profile.targetLift = -Math.sin(progress * Math.PI) * 14 * motionStrength;
+            profile.targetVisualRx = centered * -4.2 * motionStrength;
+            profile.targetVisualRy = centered * 5.8 * motionStrength;
+          });
+
+          activeRevealItems.forEach((item) => {
+            const profile = motionProfiles.get(item);
+            const rect = item.getBoundingClientRect();
+            const localProgress = clamp((viewport * 0.94 - rect.top) / (viewport * 0.62), 0, 1);
+            const direction = item.dataset.revealX === "left" ? -1 : 1;
+            const eased = 1 - Math.pow(1 - localProgress, 3);
+            profile.targetX = (1 - eased) * direction * 70 * motionStrength;
+            profile.targetOpacity = 0.5 + eased * 0.5;
+          });
+
+          startMotionLoop();
+        };
+
+        const parallaxObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              activeParallaxItems.add(entry.target);
+            } else {
+              activeParallaxItems.delete(entry.target);
+            }
+          });
+
+          updateMotionTargets();
+        }, { rootMargin: "32% 0px", threshold: [0, 0.01, 0.5, 1] });
+
+        parallaxItems.forEach((element) => parallaxObserver.observe(element));
 
         const sceneObserver = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
@@ -2314,8 +2442,8 @@
             }
           });
 
-          queueMotionUpdate();
-        }, { rootMargin: "18% 0px", threshold: [0, 0.01, 0.35, 0.7, 1] });
+          updateMotionTargets();
+        }, { rootMargin: "24% 0px", threshold: [0, 0.01, 0.25, 0.55, 0.85, 1] });
 
         scrollScenes.forEach((scene) => sceneObserver.observe(scene));
 
@@ -2328,14 +2456,14 @@
             }
           });
 
-          queueMotionUpdate();
-        }, { rootMargin: "12% 0px", threshold: [0, 0.2, 0.8] });
+          updateMotionTargets();
+        }, { rootMargin: "18% 0px", threshold: [0, 0.2, 0.8] });
 
         revealItems.forEach((item) => revealMotionObserver.observe(item));
 
-        updateMotion();
-        window.addEventListener("scroll", queueMotionUpdate, { passive: true });
-        window.addEventListener("resize", queueMotionUpdate);
+        updateMotionTargets();
+        window.addEventListener("scroll", updateMotionTargets, { passive: true });
+        window.addEventListener("resize", updateMotionTargets, { passive: true });
 
         const animateCounter = (element) => {
           const target = Number(element.dataset.target || element.textContent || 0);
