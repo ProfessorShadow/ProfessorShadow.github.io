@@ -1,0 +1,223 @@
+@import url("../sales-onboarding/styles.css");
+
+:root {
+  --ink: #2e3136;
+  --muted: #8a8d91;
+  --soft: #eaf0f3;
+  --card: #ffffff;
+  --blue: #6f97f4;
+  --teal: #6f97f4;
+  --red: #f13c38;
+  --green: #55d75a;
+  --track: #dce4f1;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+body {
+  background: var(--soft);
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+.dashboard-shell.superstore-theme {
+  width: min(1280px, calc(100vw - 16px));
+  min-height: 808px;
+  padding: 28px 30px 34px;
+}
+
+.superstore-theme .eyebrow {
+  color: #b7babd;
+  font-size: 9px;
+  letter-spacing: 0;
+}
+
+.superstore-theme h1 {
+  color: #686b70;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.superstore-theme .subtitle,
+.superstore-theme .filter-empty {
+  color: #83888d;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.superstore-theme .hero-row {
+  margin-bottom: 16px;
+}
+
+.superstore-theme .date-chip,
+.superstore-theme .kpi-card,
+.superstore-theme .panel,
+.superstore-theme .matrix-card {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.superstore-theme .date-chip {
+  background: #fff;
+  color: #34363a;
+  font-size: 11px;
+  min-width: 118px;
+  padding: 10px 13px;
+}
+
+.superstore-theme .calendar-mark {
+  border-color: var(--blue);
+}
+
+.superstore-theme .kpi-grid {
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.superstore-theme .kpi-card {
+  min-height: 70px;
+  padding: 10px 12px;
+}
+
+.superstore-theme .kpi-label,
+.superstore-theme .state-label,
+.superstore-theme .matrix-header {
+  color: #9aa0a5;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.superstore-theme .kpi-value {
+  color: #45474a;
+  font-size: 26px;
+  font-weight: 400;
+}
+
+.superstore-theme .delta {
+  background: transparent;
+  color: #303337;
+  font-size: 10px;
+  min-width: 0;
+  height: auto;
+  padding: 0;
+}
+
+.superstore-theme .delta::first-letter {
+  color: var(--green);
+}
+
+.superstore-theme .delta.warn::first-letter {
+  color: var(--red);
+}
+
+.superstore-theme .top-grid,
+.superstore-theme .bottom-grid {
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.superstore-theme .panel {
+  min-height: 220px;
+  padding: 18px 20px;
+}
+
+.superstore-theme h2 {
+  color: #84878b;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.superstore-theme .bar-meta,
+.superstore-theme .closure-numbers,
+.superstore-theme .legend {
+  font-size: 11px;
+}
+
+.superstore-theme .teal .bar-fill,
+.superstore-theme .closure-track.week i,
+.superstore-theme .green-dot {
+  background: #6e879d;
+}
+
+.superstore-theme .bar-track,
+.superstore-theme .closure-track {
+  height: 6px;
+  border-radius: 0;
+}
+
+.superstore-theme .bar-fill,
+.superstore-theme .closure-track i {
+  border-radius: 0;
+}
+
+.superstore-theme .australia-card,
+.superstore-theme .australia-card .leaflet-container {
+  border-radius: 0;
+  background: #fff;
+}
+
+.superstore-theme .state-bubble {
+  fill: rgba(231, 238, 249, 0.92);
+}
+
+.superstore-theme .tab-set button {
+  border-radius: 0;
+  background: #fff;
+  color: #34363a;
+}
+
+.superstore-theme .tab-set .active {
+  background: var(--blue);
+  color: #111;
+}
+
+.superstore-theme .state-card {
+  border-radius: 0;
+  border-left-color: var(--state-color, var(--blue));
+  background: linear-gradient(90deg, color-mix(in srgb, var(--state-color, #eef3fb) 18%, #fff), #f7f9fc);
+  min-height: 58px;
+  padding: 12px 14px;
+}
+
+.superstore-theme .state-card:nth-child(2),
+.superstore-theme .state-card:nth-child(3) {
+  border-left-color: var(--state-color, var(--blue));
+}
+
+.superstore-theme .state-value {
+  color: #45474a;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.superstore-theme .float-action,
+.superstore-theme .close-button {
+  border-radius: 0;
+  background: var(--blue);
+}
+
+.superstore-theme .matrix-header,
+.superstore-theme .matrix-row {
+  grid-template-columns: 250px repeat(7, minmax(86px, 1fr));
+}
+
+.superstore-theme .matrix-header div,
+.superstore-theme .matrix-cell,
+.superstore-theme .member-cell {
+  min-height: 66px;
+}
+
+.superstore-theme .avatar {
+  display: none;
+}
+
+.superstore-theme .member-name {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.superstore-theme .member-role {
+  font-size: 11px;
+  font-weight: 400;
+}

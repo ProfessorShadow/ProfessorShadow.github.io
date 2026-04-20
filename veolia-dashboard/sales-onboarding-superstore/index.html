@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sales & Onboarding Operational Insights - Superstore Theme</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="dashboard-shell superstore-theme">
+      <section class="hero-row">
+        <div>
+          <p class="eyebrow">Sales & Onboarding</p>
+          <h1 id="dashboard-title">Operational Insights</h1>
+          <p id="dashboard-subtitle" class="subtitle">Real-time performance monitoring across Sales & Onboarding.</p>
+        </div>
+        <div class="date-chip">
+          <span class="calendar-mark"></span>
+          <span>Last 7 Days</span>
+        </div>
+      </section>
+
+      <section id="filter-strip" class="filter-strip" aria-label="Active filters"></section>
+      <section id="kpi-grid" class="kpi-grid" aria-label="Dashboard KPIs"></section>
+
+      <section class="top-grid">
+        <article class="panel">
+          <div class="panel-heading">
+            <h2>Cases by Member</h2>
+            <span class="dots">...</span>
+          </div>
+          <div id="cases-by-member" class="bar-list"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <h2>Case Types</h2>
+            <span class="filter-icon"></span>
+          </div>
+          <div id="case-types" class="bar-list teal"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <h2>Status Breakdown</h2>
+            <span class="donut-mark"></span>
+          </div>
+          <div id="status-breakdown" class="bar-list status"></div>
+        </article>
+      </section>
+
+      <section class="bottom-grid">
+        <article class="panel closure-panel">
+          <div class="panel-heading">
+            <h2>Closure<br />Performance</h2>
+            <div class="legend">
+              <span><i class="blue-dot"></i>Today</span>
+              <span><i class="green-dot"></i>This Week</span>
+            </div>
+          </div>
+          <div id="closure-performance" class="closure-list"></div>
+          <div class="velocity">Team aggregate resolution velocity: <strong>+14%</strong></div>
+        </article>
+
+        <article class="panel map-panel">
+          <div class="panel-heading">
+            <h2>Case Distribution by State</h2>
+            <div class="tab-set">
+              <button class="active">Australia</button>
+              <button>New Zealand</button>
+            </div>
+          </div>
+          <div class="map-content">
+            <div id="australia-map" class="australia-card" aria-label="Case distribution map"></div>
+            <div id="state-cards" class="state-cards"></div>
+            <button class="float-action" aria-label="Add comparison">+</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="matrix-card">
+        <div class="matrix-header" id="team-matrix-header"></div>
+        <div id="team-matrix" class="team-matrix"></div>
+      </section>
+    </main>
+
+    <aside id="drilldown" class="drilldown" aria-hidden="true">
+      <div class="drilldown-panel">
+        <div class="drilldown-heading">
+          <div>
+            <p class="eyebrow">Drilldown</p>
+            <h2 id="drilldown-title">Cases</h2>
+            <p id="drilldown-subtitle" class="drilldown-subtitle"></p>
+          </div>
+          <button id="close-drilldown" class="close-button" aria-label="Close drilldown">×</button>
+        </div>
+        <div class="drilldown-table-wrap">
+          <table class="drilldown-table">
+            <thead>
+              <tr>
+                <th>Case</th>
+                <th>Owner</th>
+                <th>Subtype</th>
+                <th>Status</th>
+                <th>State</th>
+                <th>Age</th>
+              </tr>
+            </thead>
+            <tbody id="drilldown-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </aside>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../sales-onboarding/dashboard.js"></script>
+  </body>
+</html>
