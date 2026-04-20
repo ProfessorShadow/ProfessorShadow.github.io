@@ -65,10 +65,12 @@ h2 { font-size: 21px; font-weight: 800; line-height: 1.18; }
 .legend span { display: inline-flex; align-items: center; gap: 7px; }
 .blue-dot, .green-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); }
 .green-dot { background: var(--teal); }
-.closure-bars { display: grid; gap: 7px; }
+.closure-comparison { display: grid; gap: 5px; }
+.comparison-row { display: grid; grid-template-columns: 48px minmax(0, 1fr) 34px; align-items: center; gap: 8px; color: #647087; font-size: 11px; font-weight: 850; }
+.comparison-row strong { color: #566174; font-size: 11px; text-align: right; }
 .closure-track { height: 7px; overflow: hidden; border-radius: 999px; background: var(--track); }
 .closure-track i { display: block; width: var(--w); height: 100%; border-radius: inherit; background: var(--blue); transform-origin: left center; animation: growBar 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
-.closure-track.week i { background: var(--teal); }
+.comparison-row.week .closure-track i { background: var(--teal); }
 .closure-numbers { display: flex; gap: 18px; color: #647087; font-size: 12px; font-weight: 800; }
 .velocity { margin-top: 32px; padding-top: 21px; border-top: 1px solid #f0f2f6; color: #636a75; font-size: 12px; font-weight: 850; text-transform: uppercase; text-align: center; }
 .map-panel { position: relative; min-height: 380px; }

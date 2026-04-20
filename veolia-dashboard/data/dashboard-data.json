@@ -96,14 +96,9 @@
   ],
   "closurePerformance": [
     {
-      "label": "Aisha Khan",
-      "today": 5,
-      "week": 20
-    },
-    {
-      "label": "Rohan Patel",
-      "today": 13,
-      "week": 24
+      "label": "David Chen",
+      "today": 10,
+      "week": 46
     },
     {
       "label": "Sarah Nguyen",
@@ -111,9 +106,14 @@
       "week": 36
     },
     {
-      "label": "David Chen",
-      "today": 10,
-      "week": 46
+      "label": "Rohan Patel",
+      "today": 13,
+      "week": 24
+    },
+    {
+      "label": "Aisha Khan",
+      "today": 5,
+      "week": 20
     },
     {
       "label": "Fatima Ali",

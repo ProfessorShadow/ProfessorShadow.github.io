@@ -130,12 +130,14 @@ body {
 
 .superstore-theme .bar-meta,
 .superstore-theme .closure-numbers,
-.superstore-theme .legend {
+.superstore-theme .legend,
+.superstore-theme .comparison-row,
+.superstore-theme .comparison-row strong {
   font-size: 11px;
 }
 
 .superstore-theme .teal .bar-fill,
-.superstore-theme .closure-track.week i,
+.superstore-theme .comparison-row.week .closure-track i,
 .superstore-theme .green-dot {
   background: #6e879d;
 }

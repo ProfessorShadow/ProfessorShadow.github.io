@@ -153,7 +153,7 @@ function closurePerformance(cases, meta) {
       }).length,
       week: ownerClosed.filter((row) => isClosedInWeek(row, meta)).length,
     };
-  });
+  }).sort((a, b) => b.week - a.week || b.today - a.today || a.label.localeCompare(b.label));
 }
 
 function initials(name) {
@@ -233,7 +233,18 @@ function renderBarList(id, items, filterKey) {
 
 function renderClosure(items) {
   const max = Math.max(...items.flatMap((item) => [item.today, item.week]), 1);
-  document.getElementById("closure-performance").innerHTML = items.map((item) => `<div class="closure-item interactive ${isSelected("ownerName", item.label)}" data-filter-key="ownerName" data-filter-value="${escapeHtml(item.label)}"><div class="bar-meta"><span>${escapeHtml(item.label)}</span><span class="closure-numbers"><span>${number(item.today)} Today</span><span>${number(item.week)} Week</span></span></div><div class="closure-bars"><div class="closure-track"><i style="--w:${pct(item.today, max)}%"></i></div><div class="closure-track week"><i style="--w:${pct(item.week, max)}%"></i></div></div></div>`).join("");
+  document.getElementById("closure-performance").innerHTML = items.map((item) => `
+    <div class="closure-item interactive ${isSelected("ownerName", item.label)}" data-filter-key="ownerName" data-filter-value="${escapeHtml(item.label)}">
+      <div class="bar-meta">
+        <span>${escapeHtml(item.label)}</span>
+        <span class="closure-numbers"><span>${number(item.today)} Today</span><span>${number(item.week)} Week</span></span>
+      </div>
+      <div class="closure-comparison" aria-label="${escapeHtml(item.label)} closure comparison">
+        <div class="comparison-row today"><span>Today</span><div class="closure-track"><i style="--w:${pct(item.today, max)}%"></i></div><strong>${number(item.today)}</strong></div>
+        <div class="comparison-row week"><span>Week</span><div class="closure-track"><i style="--w:${pct(item.week, max)}%"></i></div><strong>${number(item.week)}</strong></div>
+      </div>
+    </div>
+  `).join("");
   document.querySelectorAll(".closure-item").forEach((item) => item.addEventListener("click", () => setFilter(item.dataset.filterKey, item.dataset.filterValue)));
 }
 
